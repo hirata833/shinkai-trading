@@ -30,9 +30,20 @@
     return window.ShinkaiI18n ? window.ShinkaiI18n.t(key) : key;
   }
 
+  if (window.location.search.indexOf('sent=1') !== -1) {
+    var sent = document.getElementById('formSent');
+    if (sent) {
+      sent.hidden = false;
+      sent.textContent = tr('form.sent');
+    }
+  }
+
   if (contactForm) {
     const attachmentInput = document.getElementById('attachment');
     const attachmentName = document.getElementById('attachmentName');
+    const typeSelect = document.getElementById('type');
+    const typeText = document.getElementById('typeText');
+    const formSubject = document.getElementById('formSubject');
 
     if (attachmentInput && attachmentName) {
       attachmentInput.addEventListener('change', function () {
@@ -47,47 +58,13 @@
       });
     }
 
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const company = document.getElementById('company').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const type = document.getElementById('type');
-      const typeLabel = type.options[type.selectedIndex].text;
-      const message = document.getElementById('message').value.trim();
-      const files = attachmentInput ? Array.prototype.slice.call(attachmentInput.files || []) : [];
-
-      const subject = tr('form.mail.subject') + typeLabel + ' - ' + name;
-
-      const bodyLines = [
-        tr('form.mail.name') + ': ' + name,
-        tr('form.mail.company') + ': ' + company,
-        tr('form.mail.email') + ': ' + email,
-        tr('form.mail.phone') + ': ' + (phone || tr('form.mail.blank')),
-        tr('form.mail.type') + ': ' + typeLabel,
-        '',
-        tr('form.mail.message') + ':',
-        message
-      ];
-
-      if (files.length) {
-        bodyLines.push(
-          '',
-          tr('form.mail.files') + ':',
-          files.map(function (f) { return '- ' + f.name; }).join('\n'),
-          '',
-          tr('form.mail.fileNote')
-        );
+    contactForm.addEventListener('submit', function () {
+      var typeLabel = typeSelect ? typeSelect.options[typeSelect.selectedIndex].text : '';
+      var name = document.getElementById('name').value.trim();
+      if (typeText) typeText.value = typeLabel;
+      if (formSubject) {
+        formSubject.value = tr('form.mail.subject') + typeLabel + (name ? ' - ' + name : '');
       }
-
-      const mailtoUrl =
-        'mailto:hirata@shinkai-trading.co.jp' +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(bodyLines.join('\n'));
-
-      window.location.href = mailtoUrl;
     });
   }
 })();

@@ -308,7 +308,14 @@
               </div>
             </div>
           </div>
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/hirata@shinkai-trading.co.jp" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_subject" id="formSubject" value="【お問い合わせ】ウェブサイトより">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://www.shinkai-trading.co.jp/?sent=1#contact">
+            <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="inquiry_type" id="typeText" value="">
+            <p class="form-status form-status--success" id="formSent" hidden data-i18n="form.sent">送信が完了しました。内容を確認のうえ、ご連絡いたします。</p>
             <div class="form-group">
               <label for="name"><span data-i18n="form.name">お名前</span> <span class="required" data-i18n="form.required">必須</span></label>
               <input type="text" id="name" name="name" required data-i18n-placeholder="form.namePh" placeholder="山田 太郎">
@@ -327,7 +334,7 @@
             </div>
             <div class="form-group">
               <label for="type" data-i18n="form.type">お問い合わせ種別</label>
-              <select id="type" name="type">
+              <select id="type" name="type_code">
                 <option value="buy" data-i18n="form.typeBuy">機器の買取について</option>
                 <option value="sell" data-i18n="form.typeSell">機器の購入について</option>
                 <option value="other" data-i18n="form.typeOther">その他</option>
@@ -347,7 +354,7 @@
               <p class="file-hint" data-i18n="form.fileHint">機器写真・仕様書・見積関連資料などを添付できます（複数可）</p>
             </div>
             <button type="submit" class="btn btn-primary btn-full" data-i18n="form.submit">送信する</button>
-            <p class="form-note" data-i18n="form.note">※ 送信ボタンを押すとメールソフトが起動します。添付ファイルがある場合は、メール作成画面でファイルを添付してから送信してください。</p>
+            <p class="form-note" data-i18n="form.note">※ 送信内容は hirata@shinkai-trading.co.jp に届きます。初回のみ確認メールのリンク承認が必要です。</p>
           </form>
         </div>
       </div>
