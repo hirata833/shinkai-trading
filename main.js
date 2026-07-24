@@ -53,7 +53,7 @@
           attachmentName.classList.remove('has-files');
           return;
         }
-        attachmentName.textContent = files.map(function (f) { return f.name; }).join(document.documentElement.lang === 'en' ? ', ' : '、');
+        attachmentName.textContent = files.map(function (f) { return f.name; }).join(document.documentElement.lang === 'ja' ? '、' : ', ');
         attachmentName.classList.add('has-files');
       });
     }
