@@ -210,7 +210,7 @@
       'company.capital': 'Capital',
       'company.capitalValue': '5 million yen',
       'company.address': 'Address',
-      'company.addressValue': '123-0841<br>2-5-3 Nishiarai, Adachi-ku, Tokyo<br>Flair Nishiarai Daini',
+      'company.addressValue': '2F Flair Nishiarai Daini,<br>2-5-3 Nishiarai, Adachi-ku, Tokyo<br>123-0841, JAPAN',
       'company.license': 'Secondhand Dealer License',
       'company.licenseValue': 'Tokyo Public Safety Commission License No. 306682619602',
       'company.business': 'Business',
@@ -350,6 +350,10 @@
     var saved = 'ja';
     try {
       saved = localStorage.getItem(STORAGE_KEY) || 'ja';
+      if (!dict[saved]) {
+        localStorage.removeItem(STORAGE_KEY);
+        saved = 'ja';
+      }
     } catch (e) {}
 
     document.querySelectorAll('#langSelect').forEach(function (select) {
