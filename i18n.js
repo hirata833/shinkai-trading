@@ -210,7 +210,7 @@
       'company.capital': 'Capital',
       'company.capitalValue': '5 million yen',
       'company.address': 'Address',
-      'company.addressValue': '2F Flair Nishiarai Daini,<br>2-5-3 Nishiarai, Adachi-ku, Tokyo<br>123-0841, JAPAN',
+      'company.addressValue': 'Flair Nishiarai Daini,<br>2-5-3 Nishiarai, Adachi-ku, Tokyo<br>123-0841, JAPAN',
       'company.license': 'Secondhand Dealer License',
       'company.licenseValue': 'Tokyo Public Safety Commission License No. 306682619602',
       'company.business': 'Business',
