@@ -204,7 +204,7 @@
       'company.name': 'Company Name',
       'company.nameValue': 'Shinkai Trading Co., Ltd.',
       'company.rep': 'Representative',
-      'company.repValue': 'Representative Director Shin Hirata',
+      'company.repValue': 'Shin Hirata',
       'company.founded': 'Established',
       'company.foundedValue': 'April 16, 2026 (Reiwa 8)',
       'company.capital': 'Capital',
