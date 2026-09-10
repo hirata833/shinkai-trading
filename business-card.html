@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>名刺 | 信匯商事株式会社</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #222;
+      --soft: #444;
+      --line: #b0b0b0;
+      --brand: #0a4d8c;
+      --paper: #f6f3ee;
+      --ui: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Noto Sans JP", "Source Sans 3", sans-serif;
+      background: #e8ecf1;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 40px 24px 64px;
+    }
+
+    .page { max-width: 980px; margin: 0 auto; }
+    .intro { margin-bottom: 28px; }
+
+    .intro h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--brand);
+    }
+
+    .intro p {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--ui);
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .actions button {
+      appearance: none;
+      border: 0;
+      background: var(--brand);
+      color: #fff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+
+    .actions button.secondary {
+      background: #fff;
+      color: var(--brand);
+      border: 1px solid #94a3b8;
+    }
+
+    .board {
+      display: grid;
+      gap: 36px;
+    }
+
+    .face-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--ui);
+      margin-bottom: 10px;
+    }
+
+    /* 91mm × 55mm — ORIX参考の整列レイアウト */
+    .card {
+      width: 91mm;
+      height: 55mm;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.13);
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      padding: 4.2mm 5.5mm 4.2mm 3.8mm;
+      display: grid;
+      grid-template-columns: 22mm minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .brand-col {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: start;
+      height: fit-content;
+      padding-top: 0;
+      padding-right: 2.8mm;
+      position: relative;
+    }
+
+    .brand-col::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 0.22mm;
+      background: var(--line);
+    }
+
+    .mark {
+      width: 14mm;
+      height: 14mm;
+      object-fit: contain;
+      display: block;
+    }
+
+    .mark-word {
+      margin-top: 1.2mm;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--brand);
+      line-height: 1;
+    }
+
+    .person-col {
+      grid-column: 2;
+      grid-row: 1;
+      padding-left: 3.4mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-self: stretch;
+      padding-bottom: 0;
+    }
+
+    .title {
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--soft);
+      line-height: 1.35;
+    }
+
+    .title.en {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 7px;
+      letter-spacing: 0.04em;
+      font-weight: 400;
+      color: var(--soft);
+      margin-top: 1.2mm;
+    }
+
+    .name {
+      margin-top: 1.6mm;
+      font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      line-height: 1;
+      text-indent: 0.28em;
+      color: var(--ink);
+    }
+
+    .name.en {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-indent: 0;
+    }
+
+    .info-col {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding-left: 25.4mm;
+      padding-top: 2.4mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .company {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.2mm;
+      color: var(--ink);
+    }
+
+    .company.en {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 1mm;
+    }
+
+    .details {
+      font-size: 7px;
+      line-height: 1.5;
+      color: var(--soft);
+      letter-spacing: 0.02em;
+    }
+
+    .details.en {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 7px;
+      line-height: 1.48;
+      letter-spacing: 0;
+    }
+
+    .details .row { display: block; }
+
+    .details .gap {
+      height: 0.7mm;
+    }
+
+    @media (min-width: 760px) {
+      .board {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    @media print {
+      @page {
+        size: 91mm 55mm;
+        margin: 0;
+      }
+
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .intro,
+      .face-label,
+      .actions {
+        display: none !important;
+      }
+
+      .page,
+      .board,
+      .face {
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+
+      .board { display: block; }
+
+      .face {
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .face:last-child {
+        break-after: auto;
+        page-break-after: auto;
+      }
+
+      .card {
+        box-shadow: none;
+        width: 91mm;
+        height: 55mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="intro">
+      <h1>名刺デザイン（表：日本語 / 裏：英語）</h1>
+      <p>
+        参考名刺レイアウト。英語タイトルは President。91mm × 55mm。<br />
+        「PDF / 印刷する」で PDF 保存できます。
+      </p>
+      <div class="actions">
+        <button type="button" onclick="window.print()">PDF / 印刷する</button>
+        <button type="button" class="secondary" onclick="window.location.href='index.html'">サイトに戻る</button>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="face">
+        <div class="face-label">表 — Japanese</div>
+        <article class="card" aria-label="名刺 表面（日本語）">
+          <div class="card-inner">
+            <div class="brand-col">
+              <img class="mark" src="shinkai-mark-06.png" alt="" width="40" height="40" />
+              <span class="mark-word">SHINKAI</span>
+            </div>
+
+            <div class="person-col">
+              <div class="title">代表取締役</div>
+              <div class="name">平田　信</div>
+            </div>
+
+            <div class="info-col">
+              <div class="company">信匯商事株式会社</div>
+              <div class="details">
+                <span class="row">〒123-0841 東京都足立区西新井2-5-3</span>
+                <span class="row">フレール西新井第二</span>
+                <div class="gap"></div>
+                <span class="row">携帯: 080-8743-6114</span>
+                <span class="row">E-mail: hirata@shinkai-trading.co.jp</span>
+                <span class="row">TEL: 03-6822-6530　FAX: 03-6822-6531</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="face">
+        <div class="face-label">裏 — English</div>
+        <article class="card" aria-label="Business card back (English)">
+          <div class="card-inner">
+            <div class="brand-col">
+              <img class="mark" src="shinkai-mark-06.png" alt="" width="40" height="40" />
+              <span class="mark-word">SHINKAI</span>
+            </div>
+
+            <div class="person-col">
+              <div class="name en">Shin Hirata</div>
+              <div class="title en">President</div>
+            </div>
+
+            <div class="info-col">
+              <div class="company en">Shinkai Trading Co., Ltd.</div>
+              <div class="details en">
+                <span class="row">Flair Nishiarai Daini, 2-5-3 Nishiarai,</span>
+                <span class="row">Adachi-ku, Tokyo 123-0841, JAPAN</span>
+                <div class="gap"></div>
+                <span class="row">Tel: +81-3-6822-6530　Fax: +81-3-6822-6531</span>
+                <span class="row">Mobile: +81-80-8743-6114</span>
+                <span class="row">E-mail: hirata@shinkai-trading.co.jp</span>
+                <span class="row">https://www.shinkai-trading.co.jp</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
